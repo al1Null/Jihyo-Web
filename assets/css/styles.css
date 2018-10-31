@@ -1,0 +1,51 @@
+html {
+	margin: 0px;
+	height: 100%;
+    background:linear-gradient(180deg, rgba(255,102,187,1) 0%, rgba(235,42,149,1) 50%, rgba(255,102,187,1) 100%);
+	font-family: 'Exo 2', sans-serif !important;
+}
+
+.card {
+	background-color: #212121;
+	color: #95e7f7;
+	margin-top: 128px;
+}
+
+.card-header {
+	text-align: center;
+	padding: 8px;
+	border-bottom: 1px solid black;
+	text-decoration: underline;
+}
+
+.card:hover {
+	box-shadow: 0 8px 17px 2px rgba(0,0,0,0.14), 0 3px 14px 2px rgba(0,0,0,0.12), 0 5px 5px -3px rgba(0,0,0,0.2);
+}
+
+.card-header:hover {
+	color: pink;
+	transition: color .15s;
+	cursor: pointer;
+}
+
+.search {
+	color: #95e7f7;
+}
+
+.search::placeholder {
+	color: rgba(149,231,247,.5);
+}
+
+.collapsible-header {
+	background-color: #212121;
+	text-align: center !important;
+}
+
+
+.osu__divider {
+	background-color: rgba(255, 255, 255, .3);
+	border: none;
+	outline: none;
+	height: 2px;
+	width: 50%;
+}

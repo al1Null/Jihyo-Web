@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<title>Analysis</title>
+
+		<link rel="stylesheet" href="assets/css/analysis.css">
+		<link rel="stylesheet" href="assets/css/materialize.min.css">
+		 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Exo+2:100i,400,400i" rel="stylesheet">
+	</head>
+
+	<body>
+		<%- include('partials/nav') %>
+		<div class="fluid-container">
+			<div class="row">
+				<div class="col l8 offset-l2 m10 offset-m1 s12 z-depth-2" style="background-color: #212121; color: #95e7f7; text-align: center; margin-top: 32px; padding-bottom: 16px">
+					<h3>
+						Analysis
+					</h3>
+				</div>
+				<div class="col l8 offset-l2 m10 offset-m1 s12 z-depth-2" style="background-color: #212121; color: #95e7f7; text-align: center; margin-top: 32px; padding-bottom: 16px; border-bottom: solid black 2px;">
+					<h5 style="padding-bottom: 8px;">
+						Play Count v. Global Ranking
+					</h5>
+					<div class="col m4 offset-m4 s6 offset-s3">
+						<div class="input-field">
+							<select id="option_mode_playCount">
+								<option value="0">osu!standard</option>
+								<option value="1">osu!taiko</option>
+								<option value="2">osu!catch</option>
+								<option value="3">osu!mania</option>
+							</select>
+							<label style="color: rgba(149,231,247,.5);">Mode</label>
+						</div>
+					</div>
+					<div class="col l8 offset-l2 m10 offset-m1 s12">
+						<button class="waves-effect waves-light btn purple" id="submitPlayCountMode" style="color: #95e7f7;">Show Graphs</button>
+					</div>
+				</div>
+
+				<div id="standard">
+					<div class="col l8 offset-l2  m10 offset-m1 s12" style="padding: 0px !important;">
+						<ul class="tabs" style="background-color: #83208e; padding-right: 8px; padding-left: 8px;">
+							<li class="tab col s4"><a class="active" style="color: #95e7f7; border: solid black 1px;" href="#swipe-1">Top 100</a></li>
+							<li class="tab col s4"><a style="color: #95e7f7; border: solid black 1px;" href="#swipe-2">Top 1,000</a></li>
+							<li class="tab col s4"><a style="color: #95e7f7; border: solid black 1px;" href="#swipe-3">Top 10,000</a></li>
+						</ul>
+						<div id="swipe-1" class="col s12" style="background-color: #141414; height: 576px; position: relative; margin: auto;">
+							<div class="top100graph" style="width: 100%; height: 90%;">
+								<canvas id="standardChart100"style="background-color: rgb(20,20,20); margin-top: 16px"></canvas>
+							</div>
+						</div>
+						<div id="swipe-2" class="col s12" style="background-color: #141414;height: 576px;">
+							<div class="top1000graph" style="width: 100%; height: 90%;">
+								<canvas id="standardChart1000" style="background-color: rgb(20,20,20); margin-top: 16px"></canvas>
+							</div>
+						</div>
+						<div id="swipe-3" class="col s12" style="background-color: #141414; height: 576px;">
+							<div class="top10000graph" style="width: 100%; height: 90%;">
+								<canvas id="standardChart10000" style="background-color: rgb(20,20,20); margin-top: 16px"></canvas>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="taiko">
+					<div class="col l8 offset-l2  m10 offset-m1 s12" style="padding: 0px !important;">
+						<ul  class="tabs" style="background-color: #83208e; padding-right: 8px; padding-left: 8px;">
+							<li class="tab col s4"><a class="active" style="color: #95e7f7; border: solid black 1px;" href="#swipe-1t">Top 100</a></li>
+							<li class="tab col s4"><a style="color: #95e7f7; border: solid black 1px;" href="#swipe-2t">Top 1,000</a></li>
+							<li class="tab col s4"><a style="color: #95e7f7; border: solid black 1px;" href="#swipe-3t">Top 10,000</a></li>
+						</ul>
+						<div id="swipe-1t" class="col s12" style="background-color: #141414; height: 576px; position: relative; margin: auto;">
+							<div class="top100graph" style="width: 100%; height: 90%;">
+								<canvas id="taikoChart100" width=500px height=500px style="background-color: rgb(20,20,20); margin-top: 32px"></canvas>
+							</div>
+						</div>
+						<div id="swipe-2t" class="col s12" style="background-color: #141414 ;height: 576px;">
+							<div class="top1000graph" style="width: 100%; height: 90%;">
+								<canvas id="taikoChart1000" width=500px height=500px style="background-color: rgb(20,20,20); margin-top: 32px"></canvas>
+							</div>
+						</div>
+						<div id="swipe-3t" class="col s12" style="background-color: #141414; height: 576px;">
+							<div class="top10000graph" style="width: 100%; height: 90%;">
+								<canvas id="taikoChart10000" width="512px" height="512px" style="background-color: rgb(20,20,20); margin-top: 32px"></canvas>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="catch">
+					<div class="col l8 offset-l2  m10 offset-m1 s12" style="padding: 0px !important;">
+						<ul  class="tabs" style="background-color: #83208e; padding-right: 8px; padding-left: 8px;">
+							<li class="tab col s4"><a style="color: #95e7f7; border: solid black 1px;" href="#swipe-1c">Top 100</a></li>
+							<li class="tab col s4"><a style="color: #95e7f7; border: solid black 1px;" href="#swipe-2c">Top 1,000</a></li>
+							<li class="tab col s4"><a style="color: #95e7f7; border: solid black 1px;" href="#swipe-3c">Top 10,000</a></li>
+						</ul>
+						<div id="swipe-1c" class="col s12" style="background-color: #141414; height: 576px;">
+							<div class="top100graph" style="width: 100%; height: 90%;">
+								<canvas id="catchChart100" width=500px height=500px style="background-color: rgb(20,20,20); margin-top: 32px"></canvas>
+							</div>
+						</div>
+						<div id="swipe-2c" class="col s12" style="background-color: #141414 ;height: 576px;">
+							<div class="top1000graph" style="width: 100%; height: 90%;">
+								<canvas id="catchChart1000" width=500px height=500px style="background-color: rgb(20,20,20); margin-top: 32px"></canvas>
+							</div>
+						</div>
+						<div id="swipe-3c" class="col s12" style="background-color: #141414; height: 576px;">
+							<div class="top10000graph" style="width: 100%; height: 90%;">
+								<canvas id="catchChart10000" width="512px" height="512px" style="background-color: rgb(20,20,20); margin-top: 32px"></canvas>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="mania">
+					<div class="col l8 offset-l2  m10 offset-m1 s12" style="padding: 0px !important;">
+						<ul  class="tabs" style="background-color: #83208e; padding-right: 8px; padding-left: 8px;">
+							<li class="tab col s4"><a class="active" style="color: #95e7f7; border: solid black 1px;" href="#swipe-1m">Top 100</a></li>
+							<li class="tab col s4"><a style="color: #95e7f7; border: solid black 1px;" href="#swipe-2m">Top 1,000</a></li>
+							<li class="tab col s4"><a style="color: #95e7f7; border: solid black 1px;" href="#swipe-3m">Top 10,000</a></li>
+						</ul>
+						<div id="swipe-1m" class="col s12" style="background-color: #141414; height: 576px;">
+							<div class="top100graph" style="width: 100%; height: 90%;">
+								<canvas id="maniaChart100" width=500px height=500px style="background-color: rgb(20,20,20); margin-top: 32px"></canvas>
+							</div>
+						</div>
+						<div id="swipe-2m" class="col s12" style="background-color: #141414 ;height: 576px;">
+							<div class="top1000graph" style="width: 100%; height: 90%;">
+								<canvas id="maniaChart1000" width=500px height=500px style="background-color: rgb(20,20,20); margin-top: 32px"></canvas>
+							</div>
+						</div>
+						<div id="swipe-3m" class="col s12" style="background-color: #141414; height: 576px;">
+							<div class="top10000graph" style="width: 100%; height: 90%;">
+								<canvas id="maniaChart10000" width="512px" height="512px" style="background-color: rgb(20,20,20); margin-top: 32px"></canvas>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+			</div>
+
+
+
+			<div class="row">
+				<div class="col l8 offset-l2 m10 offset-m1 s12 z-depth-2" style="background-color: #212121; color: #95e7f7; text-align: center; margin-top: 32px; padding-bottom: 16px; border-bottom: solid black 2px;">
+					<h5 style="padding-bottom: 8px;">
+						Time Played v. Global Ranking
+					</h5>
+					<div class="col m4 offset-m4 s6 offset-s3">
+						<div class="input-field">
+							<select id="option_mode_timePlayed">
+								<option value="0">osu!standard</option>
+								<option value="1">osu!taiko</option>
+								<option value="2">osu!catch</option>
+								<option value="3">osu!mania</option>
+							</select>
+							<label style="color: rgba(149,231,247,.5);">Mode</label>
+						</div>
+					</div>
+					<div class="col l8 offset-l2 m10 offset-m1 s12">
+						<button class="waves-effect waves-light btn purple" id="submitTimePlayedMode" style="color: #95e7f7;">Show Graphs</button>
+					</div>
+				</div>
+
+
+			</div>
+
+
+
+
+			<div class="row">
+				<div class="col l8 offset-l2 m10 offset-m1 s12 z-depth-2" style="background-color: #212121; color: #95e7f7; text-align: center; margin-top: 32px;">
+					<h5 style="padding-bottom: 8px;">
+						Country Charts
+					</h5>
+					<h6 style="margin-bottom: 16px;">
+						Country data from top 10,000 users
+					</h6>
+				</div>
+				<div class="col l8 offset-l2  m10 offset-m1 s12" style="padding: 0px !important;">
+					<ul  class="tabs" style="background-color: #83208e; padding-right: 8px; padding-left: 8px;">
+						<li class="tab col s3"><a style="color: #95e7f7; border: solid black 1px;" href="#s">Standard</a></li>
+						<li class="tab col s3"><a style="color: #95e7f7; border: solid black 1px;" href="#t">Taiko</a></li>
+						<li class="tab col s3"><a style="color: #95e7f7; border: solid black 1px;" href="#c">Catch</a></li>
+						<li class="tab col s3"><a style="color: #95e7f7; border: solid black 1px;" href="#m">Mania</a></li>
+					</ul>
+					<div id="s" class="col s12"style="background-color: #141414; height: 576px;">
+						<div id="countryStandard">
+							<div style="height: 100%; width: 100%">
+								<canvas id="pieStandard"></canvas>
+							</div>
+
+						</div>
+					</div>
+					<div id="t" class="col s12" style="background-color: #141414;height: 576px;">
+						<div id="countryTaiko">
+							<div style="height: 100%; width: 100%">
+								<canvas id="pieTaiko"></canvas>
+							</div>
+						</div>
+					</div>
+					<div id="c" class="col s12" style="background-color: #141414; height: 576px;">
+						<div id="countryCatch">
+							<div style="height: 100%; width: 100%">
+								<canvas id="pieCatch"></canvas>
+							</div>
+						</div>
+					</div>
+					<div id="m" class="col s12" style="background-color: #141414; height: 576px;">
+						<div id="countryMania">
+							<div style="height: 100%; width: 100%">
+								<canvas id="pieMania"></canvas>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+
+
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/materialize.min.js"></script>
+		<script src="assets/js/osu-analysis.js"></script>
+		<script src="/assets/js/regression.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+		<script type="text/javascript">
+			let countryDataStandard 	= <%- countryDataStandard %>,
+				countryDataTaiko 		= <%- countryDataTaiko %>,
+				countryDataCatch 		= <%- countryDataCatch %>,
+				countryDataMania 		= <%- countryDataMania %>;
+
+				let playerDataStandard 	= <%- dataStandard %>,
+					playerDataTaiko 	= <%- dataTaiko %>,
+					playerDataMania 	= <%- dataMania %>,
+					playerDataCatch 	= <%- dataCatch %>;
+				
+			function init() {
+				$(".tabs").tabs({ swipeable: true });
+				$(".tooltipped").tooltip({ exitDelay: 0});
+				$("#option_mode_playCount").formSelect();
+				
+				// Hide all graphs unless show graph has been pressed.
+				$("#taiko").addClass("hide");
+				$("#mania").addClass("hide");
+				$("#catch").addClass("hide");
+			}
+			
+			$(document).ready(function(){
+				init();
+				
+				graphCountryData("pieStandard", countryDataStandard);
+				graphCountryData("pieTaiko", countryDataTaiko);
+				graphCountryData("pieCatch", countryDataCatch);
+				graphCountryData("pieMania", countryDataMania);
+
+				graphPlayCountData(100, 4, "standardChart100", playerDataStandard);
+				graphPlayCountData(1000, 4, "standardChart1000", playerDataStandard);
+				graphPlayCountData(10000, 1, "standardChart10000", playerDataStandard);
+
+				$("#submitPlayCountMode").on("click", function(){
+					let mode = $("#option_mode_playCount").val();
+					renderAnalysis(mode);
+				});
+			});
+		</script>
+	</body>
+</html>

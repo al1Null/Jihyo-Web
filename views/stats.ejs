@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Statistics</title>
+
+		<link rel="stylesheet" href="./assets/css/stats.css">
+		<link rel="stylesheet" href="./assets/css/materialize.min.css">
+
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Exo+2:100i,400,400i" rel="stylesheet">
+	</head>
+
+	<body>
+		<%- include('partials/nav') %>
+
+		<div class="fluid-container">
+
+			<div class="row">
+			  <div class="col s12 m8 offset-m2 l8 offset-l2">
+					<div class="card #212121 grey darken-4">
+						<div class="info_card">
+							Enter the osu! username of a desired player and specify a gamemode
+							to see an overview of statistics
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col s12 m8 offset-m2 l8 offset-l2">
+					<div class="card #212121 grey darken-4" style="padding: 8px; color: #95e7f7; ">
+						<div class="input-field">
+							<input id="username_input" type="text" class="">
+            				<label for="username_input">Username</label>
+            				<span class="helper-text" data-error="Username is invalid!" id="username_input_error"></span>
+						</div>
+						<div class="input-field">
+							<select id="option_mode">
+								<option value="osu">osu!standard</option>
+								<option value="taiko">osu!taiko</option>
+								<option value="fruits">osu!catch</option>
+								<option value="mania">osu!mania</option>
+							</select>
+							<label style="color: rgba(149,231,247,.5);">Mode</label>
+						</div>
+						<button class="waves-effect waves-light btn purple" id="submitUser" style="color: #95e7f7;">Go</button>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col s12  m8 offset-m2 l8 offset-l2 hide" style="display: flex; justify-content: center;" id="uid_spinner">
+					<div class="preloader-wrapper big active" style="display: flex; justify-contents: center; color: black;">
+						<div class="spinner-layer spinner-blue">
+							<div class="circle-clipper left">
+							<div class="circle"></div>
+							</div><div class="gap-patch">
+							<div class="circle"></div>
+							</div><div class="circle-clipper right">
+							<div class="circle"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col s12 hide" id="user_information_datas" style="color: #95e7f7;">
+					<div class="card #212121 grey darken-4">
+						<div id="results_top">
+						</div>
+						<table class="highlight" id="table">
+							<thead>
+								<th style="text-align: center;">Top Play #</th>
+								<th style="text-align: center;">Rank</th>
+								<th style="text-align: center;">BeatMap</th>
+								<th style="text-align: center;">Mods</th>
+								<th style="text-align: center;">Difficulty</th>
+								<th style="text-align: center;">Date</th>
+								<th style="text-align: center;">PP</th>
+
+							</thead>
+							<tbody id="rows_top_play">
+							</tbody>
+						</table>
+					</div>
+					<div style="text-align: center; margin: auto;">
+						<button class="btn purple" id="load_more_users" style="position: relative; color: #95e7f7;" data-offset="10">
+							Load More
+        				</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/materialize.min.js"></script>
+		<script src="assets/js/osu-analysis.js"></script>
+		<script type="text/javascript">
+			let countryISOCodes = <%- countryISOCodes %>;
+			/***
+			 * Initializes all necessary content for something to load proplery without hindering the load time of the
+			 * page that is being requested.
+			 */
+			function init() {
+				$('.tooltipped').tooltip({ exitDelay: 0 });
+
+				M.AutoInit(); // Initializes ALL Materialize component that has yet to be initialized;
+			}
+
+			$("#username_input").keyup(function(event) {
+				if (event.keyCode == 13) {
+					$("#submitUser").click();
+				}
+			});
+
+			$("#load_more_users").on("click", function(){
+				$(this).attr("disabled", true);
+
+				let username = $("#username_input").val(),
+					mode = $("#option_mode").val(),
+					offset = $(this).data("offset");
+
+				setTimeout(function(){
+					renderUserBest(username, mode, offset);
+				}, 2000);
+			})
+
+			$("#submitUser").on("click", function(){
+				$("#uid_spinner").toggleClass("hide", true);
+				$("#user_information_datas").toggleClass("hide", true);
+
+				let username_input = $("#username_input").val(),
+					option_mode = $("#option_mode").val();
+
+				getUserProfile(username_input, option_mode);
+			});
+
+			init();
+		</script>
+	</body>
+</html>

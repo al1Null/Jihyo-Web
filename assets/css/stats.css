@@ -1,0 +1,106 @@
+html, body {
+	height: 100%;
+    background:linear-gradient(180deg, rgba(255,102,187,1) 0%, rgba(235,42,149,1) 50%, rgba(255,102,187,1) 100%);
+	font-family: 'Exo 2', sans-serif !important;
+}
+
+.nav-wrapper ul li a {
+  color: #9c27b0;
+}
+
+.nav-wrapper ul li a:hover {
+	color: pink;
+}
+
+.info_card {
+	padding: 16px; 
+	text-align: center; 
+	margin-top: 32px;
+	color: #95e7f7;
+	font-size: 1.2em;
+}
+
+#username_input::placeholder {
+	color: rgba(149,231,247,.5);
+}
+
+#username_input {
+	color: #95e7f7; 
+	border-bottom: 1px solid #9c27b0;
+	font-family: 'Exo 2', sans-serif !important;
+}
+
+input {
+	font-family: 'Exo 2', sans-serif !important;
+}
+
+.select-wrapper input.select-dropdown {
+	color: #95e7f7; 
+	border-bottom: 1px solid #9c27b0 !important;
+}
+
+.select-dropdown.dropdown-content li>span:hover {
+	background-color: rgba(255, 48, 128, .4) !important;
+}
+
+
+.dropdown-content li>span {
+	color: #95e7f7 !important;
+	background-color: #212121;
+}
+
+.caret {
+	fill: #9c27b0 !important;
+}
+
+.btn purple:hover {
+	box-shadow: 0 8px 17px 2px rgba(0,0,0,0.14), 0 3px 14px 2px rgba(0,0,0,0.12), 0 5px 5px -3px rgba(0,0,0,0.2);
+}
+
+#results_top {
+	margin: 0px;
+	padding: 0px;
+	background-color: #212121;
+	display: flex;
+	align-content: center;
+	align-items: center;
+	flex-direction: column;
+	text-align: center;
+}
+
+.top {
+	color: #95e7f7 !important;
+}
+
+.top:hover {
+	cursor: pointer;
+  	color: pink !important;
+}
+
+#avatar {
+	border-radius: 3px;
+}
+
+.top_players {
+  	text-decoration: underline;
+}
+
+tr:hover {
+	background-color: rgba(255, 48, 128, .4) !important;
+}
+
+a {
+	color: #95e7f7 !important;
+}
+
+a:hover {
+	color: pink !important;
+}
+.collapsible-header {
+	text-align: center 1important;
+}
+
+.collapsible {
+	padding: 24px;
+    border-radius: 0 0 2px 2px;
+}

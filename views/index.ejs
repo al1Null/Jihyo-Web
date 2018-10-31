@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<title>Home</title>
+
+		<meta name="theme-color" content="#ff69b4">
+
+		<link rel="stylesheet" href="./assets/css/materialize.min.css"/>
+		<link rel="stylesheet" href="./assets/css/styles.css"/>
+
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Exo+2:100i,400,400i" rel="stylesheet">
+	</head>
+
+	<body>
+		<%- include('partials/nav') %>
+
+		<!-- <div style="height: 100%; display: flex; justify-content: center; align-items: center"> -->
+			<div class="row">
+				<div class="col l3 m4 s12">
+					<div class="card" style="border-radius: 6px;">
+						<div class="card-header" style="font-weight: 500; font-size: 1.4em;" data-redirect="analysis">
+							<h5>
+								Analysis
+							</h5>
+						</div>
+						<div class="card-content" style="text-align: center;">
+							<p>
+								view such things as Play Count v. Performance Rank of the top
+								10,000 users
+								A neat visual representation of osu! stats aswell as an in depth
+								analysis of information such as rankings, top play data,
+								and top ranked players
+							</p>
+						</div>
+					</div>
+				</div>
+
+
+				<div class="col l3 m4 s12">
+					<div class="card" style="border-radius: 6px;">
+						<div class="card-header" style="font-weight: 500; font-size: 1.4em;" data-redirect="stats">
+							<h5>
+								Stats
+							</h5>
+						</div>
+						<div class="card-content" style="text-align: center;">
+							<p>
+								View your osu! stats here in a neat visual overview, or maybe just
+								enter the username of a players stats you wish to see
+							</p>
+						</div>
+					</div>
+				</div>
+
+
+
+				<div class="col l3 m4 s12">
+					<div class="card" style="border-radius: 6px;">
+						<div class="card-header" style="font-weight: 500; font-size: 1.4em;" data-redirect="recommendation">
+							<h5>
+								Recommendation App
+							</h5>
+						</div>
+						<div class="card-content" style="text-align: center;">
+							<p>
+								osu! recommendation application, this will function with all osu! game modes. After provided
+								an inputed username the app takes in certain user data points
+								(skill group, maps played, maps preformed well on, time played, rank, etc) and
+								returns a set of maps that the user most likey will perform well on performance wise
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="row" style="width: 100%;">
+
+				<div class="col offset-l4 l4 offset-m3 m6 s12">
+					<div class="card" style="width: 100%; border-radius: 6px;">
+						<div class="card-header" style="font-weight: 500; font-size: 1.4em;" data-redirect="about">
+							<h5>
+								About
+							</h5>
+						</div>
+						<div class="card-content" style="text-align: center;">
+							this site does osu stuff
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			</div>
+
+				<div class="col l3 m4 s12">
+					<div class="card" style="width: 100%; border-radius: 0px;">
+						<ul class="collapsible" style="text-align: center;">
+							<li>
+								<div class="collapsible-header">
+									<h5 class="align-center">
+										Bugs?
+									</h5>
+								</div>
+									<div class="collapsible-body">
+										<div class="row">
+											<div class="input-field col s12">
+												<input id="name" class="purple-text lighter-3" type="text">
+												<label for="name">Name</label>
+												<span class="helper-text" data-error="" data-success=""></span>
+											</div>
+											<div class="input-field col s12">
+												<input id="email" class="purple-text lighter-3" type="email">
+												<label for="email">Email</label>
+												<span class="helper-text" data-error="" data-success=""></span>
+											</div>
+											<div class="input-field col s12">
+												<textarea id="description" class="purple-text lighter-3 materialize-textarea"></textarea>
+												<label for="description">Description</label>
+												<span class="helper-text" data-error="" data-success=""></span>
+											</div>
+										</div>
+										<!--
+										<input type="text" id="name" class="search" placeholder="Name" required>
+										<input type="text" id="email" class="search" placeholder="Email" required>
+										<textarea id="bug_description" placeholder="Description" class="materialize-textarea" maxlength="100" required></textarea>
+										<!--input type="text-area" id="bug_description" class="search" placeholder="Description" required>-->
+										<div id = "error">
+										</div>
+										<div class="input-field">
+										</div>
+										<button class="btn purple" onClick="submitBug()" style="color: #95e7f7;">Submit</button>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+		<script src="./assets/js/jquery.min.js"></script>
+		<script src="./assets/js/osu-analysis.js"></script>
+		<script src="./assets/js/materialize.min.js"></script>
+		<script type="text/javascript">
+			$('.collapsible').collapsible();
+			$('.tooltipped').tooltip({
+				exitDelay: 0
+			});
+		</script>
+	</body>
+</html>

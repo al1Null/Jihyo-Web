@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<title>Recommendation</title>
+
+		<meta name="theme-color" content="#ff69b4">
+
+		<link rel="stylesheet" href="./assets/css/materialize.min.css"/>
+		<link rel="stylesheet" href="./assets/css/recommendation.css"/>
+
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Exo+2:100i,400,400i" rel="stylesheet">
+	</head>
+	
+	<body>
+		<%- include('partials/nav') %>
+		<div class="container">
+			<div class="row">
+				<div class="col l8 offset-l2 m10 offset-m1 s12 z-depth-2" style="background-color: #212121; color: #95e7f7; text-align: center; margin-top: 32px; padding-bottom: 16px">
+					<h3>
+						Recommendation App
+					</h3>
+				</div>
+	    	</div>
+			
+			<div class="row">
+			  <div class="col s12 m8 offset-m2 l8 offset-l2">
+					<div class="card #212121 grey darken-4">
+						<div class="info_card">
+							Enter your osu! username and the gamemode you wish to get map recommendations for
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col s12 m8 offset-m2 l8 offset-l2">
+					<div class="card #212121 grey darken-4" style="padding: 8px; color: #95e7f7; ">
+						<div class="input-field">
+							<input id="username_input" type="text" class="">
+							<label for="username_input">Username</label>
+						</div>
+						<div class="input-field">
+							<select id="option_mode">
+								<option value="osu">osu!standard</option>
+								<option value="taiko">osu!taiko</option>
+								<option value="fruits">osu!catch</option>
+								<option value="mania">osu!mania</option>
+							</select>
+							<label style="color: rgba(149,231,247,.5);">Mode</label>
+						</div>
+						<button class="waves-effect waves-light btn purple" id="submitUser" style="color: #95e7f7;">Go</button>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+		
+		
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/materialize.min.js"></script>
+		<script src="assets/js/osu-analysis.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+		<script type="text/javascript">
+				
+			function init() {
+				$(".tooltipped").tooltip({ exitDelay: 0, outDuration: 0});
+				M.AutoInit();
+			}
+			
+			
+			$(document).ready(function(){
+				init();
+				
+				$("#username_input").keyup(function(event) {
+				if (event.keyCode == 13) {
+					$("#submitUser").click();
+					}
+				});
+				
+				$("#submitUser").on("click", function(){
+					let username = $("#username_input").val();
+					let mode = $("#option_mode").val();
+					let user_id, country, rank, country_rank;
+					
+					let top_data = {}
+					
+					// type is leaderboard_global or country_leaderboard
+					function topPlaysFreq(username, page_num, mode, type) {
+						if (type == "global") {
+							$.get({
+								async: false,
+								url: `/api/leaderboard_global/${page_num}/${mode}/`,
+								success: function(data) {
+									let usernames = data, 
+										users_top_fifty = [],
+										limit = 50,
+										mode_int;
+									
+									if (mode == 'osu') mode_int = 0;
+									if (mode == 'taiko') mode_int = 1;
+									if (mode == 'fruits') mode_int = 2;
+									if (mode == 'mania') mode_int = 3;
+									
+									// finds inputed users' top 50 plays
+									$.get({ 
+										async: false,
+										url: `/api/top_plays/${username}/${mode_int}/${limit}`,
+										success: function(data) {
+											for (var i in data) {
+												let beatmapId = data[i].beatmap_id;
+												users_top_fifty.push(beatmapId);
+											}
+										}
+									});
+									
+									// finds top 5 for each user on page
+									for (var user in usernames) { 
+										limit = 5;
+										$.get({
+											async: false,
+											url: `/api/top_plays/${usernames[user]}/${mode_int}/${limit}`,
+											success: function(data) {
+												for (var i in data) {
+													let beatmapId = data[i].beatmap_id;
+													if (!(isInArray(beatmapId, users_top_fifty))) { 
+														if (beatmapId in top_data) {
+															top_data[beatmapId] += 1;
+														} else {
+															top_data[beatmapId] = 1;
+														}
+													}
+												}
+											}
+										});
+									}
+								}
+							});
+						} else if (type == "country") {
+							$.get({
+								async: false,
+								url: `/api/leaderboard_country/${page_num}/${mode}/${country}`,
+								success: function(data) {
+									let usernames = data, 
+										users_top_fifty = [],
+										limit = 50,
+										mode_int;
+									
+									if (mode == 'osu') mode_int = 0;
+									if (mode == 'taiko') mode_int = 1;
+									if (mode == 'fruits') mode_int = 2;
+									if (mode == 'mania') mode_int = 3;
+									
+									// finds inputed users' top 50 plays
+									$.get({ 
+										async: false,
+										url: `/api/top_plays/${username}/${mode_int}/${limit}`,
+										success: function(data) {
+											for (var i in data) {
+												let beatmapId = data[i].beatmap_id;
+												users_top_fifty.push(beatmapId);
+											}
+										}
+									});
+									
+									// finds top 5 for each user on page
+									for (var user in usernames) { 
+										limit = 7;
+										$.get({
+											async: false,
+											url: `/api/top_plays/${usernames[user]}/${mode_int}/${limit}`,
+											success: function(data) {
+												for (var i in data) {
+													let beatmapId = data[i].beatmap_id;
+													if (!(isInArray(beatmapId, users_top_fifty))) { 
+														if (beatmapId in top_data) {
+															top_data[beatmapId] += 1;
+														} else {
+															top_data[beatmapId] = 1;
+														}
+													}
+												}
+											}
+										});
+									}
+								}
+							});
+						}
+					}
+					
+					function renderUserData(username, mode) {
+						$.get({
+							async: false,
+							url: `/api/get_userid/${username}/${mode}`,
+							success: function(data) {
+								user_id = data.id
+								country = data.country.code
+								rank = data.statistics.pp_rank
+								country_rank = data.statistics.rank.country
+							}
+						});
+					}
+					
+					renderUserData(username, mode)
+					
+					
+					if (rank < 9990) {
+						let page_num = parseInt(rank/50)+1;
+						for (var i = page_num; i < (page_num + 5); i++) {
+							console.log(i)
+							topPlaysFreq(username, i, mode, "global")
+						}
+						console.log(top_data);
+						
+					} else if (country_rank < 9990) {
+						let page_num = parseInt(country_rank/50)+1
+						for (var i = page_num; i < (page_num + 5); i++) {
+							console.log(i)
+							topPlaysFreq(username, i, mode, "country")
+						}
+						console.log(sortObject(top_data));
+					}
+					
+					
+				});
+				
+				
+				
+				
+				
+			});
+		</script>
+	</body>
+</html>

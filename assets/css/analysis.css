@@ -1,0 +1,38 @@
+html {
+	margin: 0px;
+	height: 100%;
+    background:linear-gradient(180deg, rgba(255,102,187,1) 0%, rgba(235,42,149,1) 50%, rgba(255,102,187,1) 100%);
+	font-family: 'Exo 2', sans-serif !important;
+}
+
+.select-wrapper input.select-dropdown {
+	color: #95e7f7; 
+	border-bottom: 1px solid #9c27b0 !important;
+}
+
+.select-dropdown.dropdown-content li>span:hover {
+	background-color: rgba(255, 48, 128, .4) !important;
+}
+
+
+.dropdown-content li>span {
+	color: #95e7f7 !important;
+	background-color: #212121;
+}
+
+.caret {
+	fill: #9c27b0 !important;
+}
+
+.disabledbutton {
+    pointer-events: none;
+    opacity: 0;
+}
+
+.select-wrapper input.select-dropdown {
+	font-family: 'Exo 2', sans-serif !important;
+}
+
+.btn {
+	font-family: 'Exo 2', sans-serif !important;
+}

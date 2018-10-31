@@ -1,0 +1,66 @@
+html {
+	margin: 0px;
+	height: 100%;
+    background:linear-gradient(180deg, rgba(255,102,187,1) 0%, rgba(235,42,149,1) 50%, rgba(255,102,187,1) 100%);
+	font-family: 'Exo 2', sans-serif !important;
+}
+
+.info_card {
+	padding: 16px; 
+	text-align: center; 
+	margin-top: 32px;
+	color: #95e7f7;
+	font-size: 1.2em;
+}
+
+#username_input::placeholder {
+	color: rgba(149,231,247,.5);
+}
+
+#username_input {
+	color: #95e7f7; 
+	border-bottom: 1px solid #9c27b0;
+	font-family: 'Exo 2', sans-serif !important;
+}
+
+input {
+	font-family: 'Exo 2', sans-serif !important;
+}
+
+.select-wrapper input.select-dropdown {
+	color: #95e7f7; 
+	border-bottom: 1px solid #9c27b0 !important;
+}
+
+.select-dropdown.dropdown-content li>span:hover {
+	background-color: rgba(255, 48, 128, .4) !important;
+}
+
+
+.dropdown-content li>span {
+	color: #95e7f7 !important;
+	background-color: #212121;
+}
+
+.caret {
+	fill: #9c27b0 !important;
+}
+
+.btn purple:hover {
+	box-shadow: 0 8px 17px 2px rgba(0,0,0,0.14), 0 3px 14px 2px rgba(0,0,0,0.12), 0 5px 5px -3px rgba(0,0,0,0.2);
+}
+
+.btn:hover {
+	background-color: rgba(156, 39, 176, .75)  !important;
+}
+
+.input-field>label {
+	color: rgba(149,231,247,.5) !important;
+}
+
+label {
+	color: rgba(149,231,247,.5);
+}
+
+
+

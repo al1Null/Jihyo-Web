@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Error Page</title>
+
+		<link href="https://fonts.googleapis.com/css?family=Exo+2:100i,400,400i" rel="stylesheet">
+
+		<style>
+			* {
+				font-family: 'Exo 2', sans-serif !important;
+			}
+
+			body {
+				background-color: pink;
+				font-family: 'Exo 2', sans-serif;
+
+			}
+
+			.error_wrapper {
+				display: flex;
+				align-items: center;
+				height: 100vh;
+				flex-direction: column;
+			}
+
+			.error_wrapper > .error_heading {
+				font-size: 1.4em;
+				margin-top: 32px;
+				display: flex;
+				align-items: center;
+			}
+
+			img {
+				width: 25%;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="error_wrapper">
+			<img src="assets/image/error.png" alt="Error Image">
+
+			<div class="error_heading">
+				<h1>That's a Big Yikes...</h1>
+			</div>
+			<div>
+				<h4>An error occured, want to return <a href="/">home</a>?</h4>
+			</div>
+		</div>
+
+	</body>
+</html>
